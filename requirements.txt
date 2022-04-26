@@ -1,0 +1,10 @@
+git+https://github.com/Rapptz/discord.py
+git+https://github.com/Gorialis/jishaku
+aiohttp
+aiopyston
+googletrans==4.0.0rc1
+simpleeval
+easy_pil
+motor
+dnspython
+tabulate
