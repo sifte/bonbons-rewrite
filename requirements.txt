@@ -8,3 +8,4 @@ easy_pil
 motor
 dnspython
 tabulate
+python-dotenv
