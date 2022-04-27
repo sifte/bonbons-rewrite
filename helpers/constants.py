@@ -4,11 +4,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 class Config:
-    TOKEN = environ["TOKEN"]
-    HOST = environ["DEFINE_API_URI"]
-    MONGO = environ["MONGO_URI"]
-    KEY = environ["API_KEY"]
-
+    MONGO="mongodb+srv://kayle:kaylebetter@cluster0.s0wqa.mongodb.net/discord?retryWrites=true&w=majority"
+    KEY="c8b299ee91msha4c1921cebbedabp1f70a0jsnc4c1cc4b9c5c"
+    HOST="mashape-community-urban-dictionary.p.rapidapi.com"
+    TOKEN="ODg4MzA5OTE1NjIwMzcyNDkx.YUQ1Ew.kRuP4WKEdgrNDJaiYS-SZLUAEmo"
 
 REPLIES = [ 
     "Noooooo!!",
