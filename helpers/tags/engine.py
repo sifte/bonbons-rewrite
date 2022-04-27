@@ -17,11 +17,11 @@ class TagEngine:
     
     def __init__(self, ctx: Context, substitutes: dict=None) -> None:
         self.substitutes = substitutes if substitutes else {
-            'author_mention': ctx.author.mention,
-            'author_name': ctx.author.name,
-            'author_id': ctx.author.id,
-            'author_discriminator': ctx.author.discriminator,
-            'author_avatar_url': ctx.author.display_avatar.url,
+            '{user.mention}': ctx.author.mention,
+            '{user.name}': ctx.author.name,
+            '{user.id}': ctx.author.id,
+            '{user.discriminator}': ctx.author.discriminator,
+            '{user.avatar.url}': ctx.author.display_avatar.url,
         }
 
     def __getitem__(self, key: str) -> str | int:
@@ -31,6 +31,6 @@ class TagEngine:
         self.substitutes[key] = value
 
     def substitute(self, text: str) -> str:
-
-        new_text = Template(text)
-        return new_text.safe_substitute(self.substitutes)
+        for k, v in self.substitutes.items():
+            text = text.replace(k, v)
+        return text
