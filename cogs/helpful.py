@@ -100,10 +100,13 @@ class Helpful(commands.Cog):
                 return
 
     @commands.command(name="run")
-    async def run(self, ctx: commands.Context, lang, *, code: str):
+    async def run(self, ctx: commands.Context, language: str, *, code: str):
         """Run some code."""
         async with ctx.typing():
-            await self.run_code(ctx, lang, code)
+            lang = await commands.clean_content().convert(ctx, language)
+            code = await commands.clean_content().convert(ctx, code) 
+
+            await self.run_code(ctx, language, code)
 
     @commands.Cog.listener("on_message_edit")
     async def on_message_edit(self, before: discord.Message, after: discord.Message):
