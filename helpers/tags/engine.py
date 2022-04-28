@@ -31,6 +31,6 @@ class TagEngine:
         self.substitutes[key] = value
 
     def substitute(self, text: str) -> str:
-        for k, v in self.substitutes.items():
-            text = text.replace(k, v)
+        for key, value in self.substitutes.items():
+            text = text.replace(key, str(value))
         return text
