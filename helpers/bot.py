@@ -23,7 +23,7 @@ class Bonbons(commands.Bot):
         self.ignored_cogs: list[str] = ["Jishaku", "Owner", "Help"]
 
     async def start(self) -> None:
-        await super().start('ODg4MzA5OTE1NjIwMzcyNDkx.YUQ1Ew.D_YjmeFQRhUMnQLuToTcwCOrymA')
+        await super().start('ODg4MzA5OTE1NjIwMzcyNDkx.YUQ1Ew.W_7Ts_-tZTnQc4nMbzn8jHnht8Q')
 
     async def setup_hook(self) -> None:
 
