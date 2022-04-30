@@ -16,7 +16,7 @@ class Logging(Cog):
     @Cog.listener()
     async def on_command(self, ctx: Context):
         if ctx.guild:
-            log = f'[COMMAND] Command `{ctx.command.name}` ran in `{ctx.guild.name}/{ctx.channel.name}` (`{ctx.guild.id}`/`{ctx.channel.id}`) at `{ctx.message.created_at()}`'
+            log = f'[COMMAND] Command `{ctx.command.name}` ran in `{ctx.guild.name}/{ctx.channel.name}` (`{ctx.guild.id}`/`{ctx.channel.id}`) at `{ctx.message.created_at}`'
             self.bot.logs.append(log)
 
 async def setup(bot: Bonbons) -> None:
