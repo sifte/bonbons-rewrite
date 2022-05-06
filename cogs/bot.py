@@ -20,7 +20,7 @@ class Bot(Cog):
     @command(name="information", aliases=("uptime", "info"))
     async def info(self, ctx: Context) -> None:
 
-        """Tells you my information."""
+        """Gives you information about me."""
 
         users = len(self.bot.users)
         guilds = len(self.bot.guilds)
@@ -33,7 +33,7 @@ class Bot(Cog):
     @command(name="ping")
     async def ping(self, ctx: Context) -> None:
 
-        """Tells you my latency."""
+        """Pong? TwT 🏓"""
 
         latency = f"{self.bot.latency * 1000:.2f}ms"
 
