@@ -46,13 +46,13 @@ class Helpful(commands.Cog):
                 and output.raw_json["run"]["stderr"]
             ):
                 self.runs[ctx.author.id] = await ctx.reply(
-                    content=f"{ctx.author.mention} :warning: Your {lang} job has completed with return code 1.\n\n```\n{output}\n```"
+                    content=f"{ctx.author.mention} :warning: Your {lang} job has completed with return code 1.\n\n```{lang}\n{output}\n```"
                 )
                 return
 
             if output.raw_json["run"]["stdout"] == "":
                 self.runs[ctx.author.id] = await ctx.send(
-                    content=f"{ctx.author.mention} :warning: Your {lang} job has completed with return code 0.\n\n```\n[No output]\n```"
+                    content=f"{ctx.author.mention} :warning: Your {lang} job has completed with return code 0.\n\n```{lang}\n[No output]\n```"
                 )
                 return
 
@@ -64,7 +64,7 @@ class Helpful(commands.Cog):
                     )
 
                 self.runs[ctx.author.id] = await ctx.send(
-                    content=f"{ctx.author.mention} :white_check_mark: Your {lang} job has completed with return code 0.\n\n```\n{output}\n```"
+                    content=f"{ctx.author.mention} :white_check_mark: Your {lang} job has completed with return code 0.\n\n```{lang}\n{output}\n```"
                 )
                 return
 
@@ -78,13 +78,13 @@ class Helpful(commands.Cog):
                 and output.raw_json["run"]["stderr"]
             ):
                 self.runs[ctx.author.id] = await ctx.reply(
-                    content=f"{ctx.author.mention} :warning: Your {lang} job has completed with return code 1.\n\n```\n{output}\n```"
+                    content=f"{ctx.author.mention} :warning: Your {lang} job has completed with return code 1.\n\n```{lang}\n{output}\n```"
                 )
                 return
 
             if output.raw_json["run"]["stdout"] == "":
                 self.runs[ctx.author.id] = await ctx.send(
-                    content=f"{ctx.author.mention} :warning: Your {lang} job has completed with return code 0.\n\n```\n[No output]\n```"
+                    content=f"{ctx.author.mention} :warning: Your {lang} job has completed with return code 0.\n\n```{lang}\n[No output]\n```"
                 )
                 return
 
@@ -95,7 +95,7 @@ class Helpful(commands.Cog):
                     )
 
                 self.runs[ctx.author.id] = await ctx.send(
-                    content=f"{ctx.author.mention} :white_check_mark: Your {lang} job has completed with return code 0.\n\n```\n{output}\n```"
+                    content=f"{ctx.author.mention} :white_check_mark: Your {lang} job has completed with return code 0.\n\n```{lang}\n{output}\n```"
                 )
                 return
 
@@ -107,44 +107,6 @@ class Helpful(commands.Cog):
             code = await commands.clean_content().convert(ctx, code) 
 
             await self.run_code(ctx, language, code)
-
-    @commands.Cog.listener("on_message_edit")
-    async def on_message_edit(self, before: discord.Message, after: discord.Message):
-        ctx = await self.bot.get_context(after)
-        cmd = self.bot.get_command(after.content.lower().replace(str(ctx.prefix), ""))
-        try:
-            if after.content.lower().startswith(f"{ctx.prefix}run"):
-                await after.add_reaction("🔁")
-
-            def check(reaction, user):
-                return user == after.author and str(reaction.emoji) == "🔁"
-
-            try:
-                reaction, user = await self.bot.wait_for(
-                    "reaction_add", timeout=30, check=check
-                )
-            except asyncio.TimeoutError:
-                await after.clear_reaction("🔁")
-            else:
-                msg: discord.Message = self._run_cache[after.author.id]
-
-                if msg:
-                    await msg.delete()
-
-                await cmd.invoke(ctx)
-
-                try:
-                    await after.clear_reaction("🔁")
-                except discord.Forbidden:
-                    pass
-
-        except Exception:
-            pass
-
-    @commands.command(name="say")
-    async def say(self, ctx: commands.Context, *, text: str):
-        """Says whatever you want for you!"""
-        await ctx.send(text)
 
     @commands.command(name="translate")
     async def translate(
