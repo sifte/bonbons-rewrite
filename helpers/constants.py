@@ -9,7 +9,7 @@ class Config:
     HOST=environ['HOST']
     TOKEN=environ['TOKEN']
 
-REPLIES = [ 
+REPLIES = ( 
     "Noooooo!!",
     "Nope.",
     "I'm sorry Dave, I'm afraid I can't do that.",
@@ -27,7 +27,7 @@ REPLIES = [
     "NEGATORY.",
     "Nuh-uh.",
     "Not in my house!",
-]
+)
 
 FAIL_REPLIES = (
     "I looked far and wide but nothing was found.",
