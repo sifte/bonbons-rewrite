@@ -148,6 +148,11 @@ class Tags(commands.Cog):
         if tag is None:
             return await ctx.reply("A tag with this name does not exist.")
 
+    @tag.command(name="variables", aliases=("vars", "substitutes"))
+    async def variables(self, ctx: commands.Context):
+        engine = TagEngine(ctx)
+        embed = discord.Embed(title="Variables", description="\n".join(engine.substitutes.keys()))
+        
     @commands.Cog.listener("on_message")
     async def send_tag(self, message: discord.Message) -> None:
 
