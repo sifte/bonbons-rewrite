@@ -7,8 +7,6 @@ from discord.ui import Button, View, button
 
 
 class SphinxObjectFileReader:
-    BUFSIZE = 16 * 1024
-
     def __init__(self, buffer: bytes):
         self.stream = BytesIO(buffer)
 
@@ -21,7 +19,7 @@ class SphinxObjectFileReader:
     def read_compressed_chunks(self):
         decompressor = decompressobj()
         while True:
-            chunk = self.stream.read(self.BUFSIZE)
+            chunk = self.stream.read(16 * 1024)
             if len(chunk) == 0:
                 break
             yield decompressor.decompress(chunk)
