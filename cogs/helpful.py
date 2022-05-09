@@ -102,11 +102,11 @@ class Helpful(commands.Cog):
     @commands.command(name="run")
     async def run(self, ctx: commands.Context, language: str, *, code: str):
         """Run some code."""
-        async with ctx.typing():
-            lang = await commands.clean_content().convert(ctx, language)
-            code = await commands.clean_content().convert(ctx, code) 
+        await ctx.typing()
+        lang = await commands.clean_content().convert(ctx, language)
+        code = await commands.clean_content().convert(ctx, code) 
 
-            await self.run_code(ctx, language, code)
+        await self.run_code(ctx, language, code)
 
     @commands.command(name="translate")
     async def translate(
