@@ -35,7 +35,6 @@ class SphinxObjectFileReader:
                 buf = buf[pos + 1 :]
                 pos = buf.find(b"\n")
 
-
 class RTFMView(View):
     def __init__(
         self,
