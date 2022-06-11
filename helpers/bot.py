@@ -21,6 +21,7 @@ class Bonbons(commands.Bot):
         )
         self.uptime: int = int(discord.utils.utcnow().timestamp())
         self.ignored_cogs: list[str] = ["Jishaku", "Owner", "Help"]
+        self.owner_ids = {656073353215344650, 669794921883893776}
 
     async def start(self) -> None:
         await super().start(Config.TOKEN)
