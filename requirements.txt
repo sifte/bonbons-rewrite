@@ -8,5 +8,5 @@ easy_pil==0.1.9
 motor==3.0.0
 dnspython==2.2.1
 tabulate==0.8.10
-python-dotenv==0.20.0
+python-dotenv==0.21.0
 asyncpraw
